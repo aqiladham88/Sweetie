@@ -4,6 +4,26 @@ import { useReducedMotion } from "../hooks/useReducedMotion";
 import loveStory from "../config/loveStory";
 import "./MemoryGallery.css";
 
+/**
+ * Generate random-but-stable properties for each polaroid so
+ * they look naturally scattered on a table / floating in space.
+ */
+function polaroidStyle(index: number, total: number) {
+  // Deterministic "random" based on index
+  const seed = (index * 7 + 3) % 11;
+  const rotation = (seed - 5) * 2.5;           // -12.5 … 12.5 deg
+  const floatDelay = (index * 0.4) % 3;         // stagger the wiggle phase
+  const floatDuration = 3.5 + (seed % 3) * 0.8; // 3.5 – 5.9s cycle
+  const zIndex = total - index;                  // stack order
+
+  return {
+    "--polaroid-rotation": `${rotation}deg`,
+    "--float-delay": `${floatDelay}s`,
+    "--float-duration": `${floatDuration}s`,
+    zIndex,
+  } as React.CSSProperties;
+}
+
 export default function MemoryGallery() {
   const reducedMotion = useReducedMotion();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -21,7 +41,6 @@ export default function MemoryGallery() {
 
   const closeModal = useCallback(() => {
     setSelectedIndex(null);
-    // Restore focus
     setTimeout(() => prevFocusRef.current?.focus(), 50);
   }, []);
 
@@ -36,7 +55,6 @@ export default function MemoryGallery() {
   // Keyboard navigation in modal
   useEffect(() => {
     if (selectedIndex === null) return;
-
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeModal();
       else if (e.key === "ArrowRight") goNext();
@@ -46,7 +64,7 @@ export default function MemoryGallery() {
     return () => document.removeEventListener("keydown", handler);
   }, [selectedIndex, closeModal, goNext, goPrev]);
 
-  // Trap focus in modal
+  // Lock scroll when modal is open
   useEffect(() => {
     if (selectedIndex !== null) {
       modalRef.current?.focus();
@@ -61,24 +79,27 @@ export default function MemoryGallery() {
     setImageErrors((prev) => new Set(prev).add(index));
   }, []);
 
-  const fadeUp = reducedMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-40px" },
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-      };
-
   const selected = selectedIndex !== null ? photos[selectedIndex] : null;
   const selectedHasError = selectedIndex !== null && imageErrors.has(selectedIndex);
 
   return (
     <section className="gallery" id="gallery" aria-label="Our memory collection">
-      <motion.h2 className="gallery__title" {...fadeUp}>
+      <motion.h2
+        className="gallery__title"
+        initial={reducedMotion ? {} : { opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] as const }}
+      >
         Our little memory collection
       </motion.h2>
-      <motion.p className="gallery__subtitle" {...fadeUp}>
+      <motion.p
+        className="gallery__subtitle"
+        initial={reducedMotion ? {} : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 1, delay: 0.15, ease: [0.22, 1, 0.36, 1] as const }}
+      >
         Tap a photo to see it closer 📸
       </motion.p>
 
@@ -88,7 +109,8 @@ export default function MemoryGallery() {
           return (
             <motion.div
               key={i}
-              className="polaroid"
+              className={`polaroid ${reducedMotion ? "" : "polaroid--animated"}`}
+              style={polaroidStyle(i, photos.length)}
               role="listitem"
               tabIndex={0}
               onClick={() => openModal(i)}
@@ -99,8 +121,26 @@ export default function MemoryGallery() {
                 }
               }}
               aria-label={`View photo: ${photo.caption}`}
-              {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.1 }}
+              initial={reducedMotion ? {} : {
+                opacity: 0,
+                y: 80,
+                rotateX: 25,
+                rotateZ: ((i * 7 + 3) % 11 - 5) * 3,
+                scale: 0.85,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                rotateZ: ((i * 7 + 3) % 11 - 5) * 2.5,
+                scale: 1,
+              }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                duration: 1,
+                delay: i * 0.12,
+                ease: [0.22, 1, 0.36, 1] as const,
+              }}
             >
               <div className="polaroid__image-wrapper">
                 {hasError ? (
