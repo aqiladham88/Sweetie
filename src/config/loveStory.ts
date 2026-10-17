@@ -124,27 +124,63 @@ const loveStory: LoveStoryConfig = {
   /* ─── Photo Gallery ─────────────────── */
   photos: [
     {
-      src: "/photos/photo-1.jpg",
-      caption: "A moment worth keeping",
-      alt: "A treasured memory together",
-      date: "",
-    },
-    {
-      src: "/photos/photo-2.jpg",
+      src: "/Sweetie/photos/photo_2026-10-17_15-51-43.jpg",
       caption: "This one makes me smile",
       alt: "A happy moment together",
       date: "",
     },
     {
-      src: "/photos/photo-3.jpg",
+      src: "/Sweetie/photos/photo_2026-10-17_15-51-50.jpg",
       caption: "One of my favourites",
       alt: "A favourite memory",
       date: "",
     },
     {
-      src: "/photos/photo-4.jpg",
+      src: "/Sweetie/photos/photo_2026-10-17_15-51-53.jpg",
       caption: "I like us here",
       alt: "A lovely moment",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-51-57.jpg",
+      caption: "Always smiling with you",
+      alt: "A warm moment together",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-51-59.jpg",
+      caption: "Little moments like these",
+      alt: "A sweet memory",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-52-03.jpg",
+      caption: "You make everything better",
+      alt: "A special moment",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-52-06.jpg",
+      caption: "Heart full just looking at this",
+      alt: "A cherished memory",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-52-08.jpg",
+      caption: "My favourite person",
+      alt: "A treasured photo",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-52-11.jpg",
+      caption: "Glad it's you",
+      alt: "A beautiful memory",
+      date: "",
+    },
+    {
+      src: "/Sweetie/photos/photo_2026-10-17_15-52-13.jpg",
+      caption: "Us, always",
+      alt: "A meaningful moment together",
       date: "",
     },
   ],
@@ -192,7 +228,7 @@ const loveStory: LoveStoryConfig = {
    * the site will work perfectly without it.
    */
   song: {
-    audioPath: "/audio/our-song.mp3",
+    audioPath: "/Sweetie/audio/our-song.mp3",
     title: "Our Song",
     artist: "Artist",
     externalLink: "",
