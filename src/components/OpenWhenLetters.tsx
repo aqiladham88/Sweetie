@@ -18,10 +18,10 @@ export default function OpenWhenLetters() {
   const fadeUp = reducedMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 20 },
+        initial: { opacity: 0, y: 30 },
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-40px" },
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+        viewport: { once: true, margin: "-60px" },
+        transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const },
       };
 
   return (
@@ -41,7 +41,7 @@ export default function OpenWhenLetters() {
               key={i}
               className={`open-when-card${isOpen ? " open-when-card--open" : ""}`}
               {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.1 }}
+              transition={{ ...fadeUp.transition, delay: i * 0.15 }}
             >
               <button
                 className="open-when-card__trigger"

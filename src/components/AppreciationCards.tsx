@@ -20,10 +20,10 @@ export default function AppreciationCards() {
   const fadeUp = reducedMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 20 },
+        initial: { opacity: 0, y: 30 },
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-40px" },
-        transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+        viewport: { once: true, margin: "-60px" },
+        transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const },
       };
 
   return (
@@ -44,7 +44,7 @@ export default function AppreciationCards() {
               className={`appreciation-card${isRevealed ? " appreciation-card--revealed" : ""}`}
               role="listitem"
               {...fadeUp}
-              transition={{ ...fadeUp.transition, delay: i * 0.08 }}
+              transition={{ ...fadeUp.transition, delay: i * 0.12 }}
             >
               <div
                 className="appreciation-card__inner"

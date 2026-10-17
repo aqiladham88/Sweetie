@@ -36,6 +36,17 @@ export interface OpenWhenNote {
   note: string;
 }
 
+export interface MilestoneEntry {
+  /** Emoji icon for the dot */
+  icon: string;
+  /** Title of the milestone */
+  title: string;
+  /** Short description */
+  description: string;
+  /** Optional date label */
+  date?: string;
+}
+
 export interface SongConfig {
   /** Path relative to `public/`, e.g. "/audio/our-song.mp3" */
   audioPath: string;
@@ -61,6 +72,12 @@ export interface LoveStoryConfig {
 
   /* ─── Photo Gallery ─────────────────── */
   photos: PhotoEntry[];
+
+  /* ─── Our Journey (Timeline) ────────── */
+  milestones?: MilestoneEntry[];
+
+  /* ─── Reasons I Love You ────────────── */
+  reasonsILoveYou?: string[];
 
   /* ─── "Open When" Notes ─────────────── */
   openWhenNotes: OpenWhenNote[];
@@ -118,6 +135,22 @@ const loveStory: LoveStoryConfig = {
     {
       message: "The fact that you're wonderfully, completely you.",
       icon: "🌙",
+    },
+    {
+      message: "How you always remember the small details about me.",
+      icon: "💭",
+    },
+    {
+      message: "The way you light up when you talk about things you love.",
+      icon: "🌟",
+    },
+    {
+      message: "Your voice — especially when it's the first thing I hear.",
+      icon: "🎵",
+    },
+    {
+      message: "How safe and understood you make me feel.",
+      icon: "🫶",
     },
   ],
 
@@ -185,6 +218,61 @@ const loveStory: LoveStoryConfig = {
     },
   ],
 
+  /* ─── Our Journey (Timeline) ────────── */
+  milestones: [
+    {
+      icon: "👋",
+      title: "The day we met",
+      description: "I had no idea that moment would change everything.",
+    },
+    {
+      icon: "💬",
+      title: "First real conversation",
+      description: "Talking to you felt different. Like I'd known you longer than I actually had.",
+    },
+    {
+      icon: "🦋",
+      title: "When I knew",
+      description: "It hit me quietly — not a lightning bolt, just a warm realisation that you were someone I didn't want to lose.",
+    },
+    {
+      icon: "🤝",
+      title: "Made it official",
+      description: "The best decision. No overthinking, just choosing you.",
+    },
+    {
+      icon: "🌙",
+      title: "Late-night talks",
+      description: "Those hours we spent talking about everything and nothing — I'd relive every single one.",
+    },
+    {
+      icon: "💪",
+      title: "First real challenge",
+      description: "We weren't perfect, but we showed up for each other. That meant everything.",
+    },
+    {
+      icon: "💕",
+      title: "Right now",
+      description: "Still here. Still choosing you. Still grateful.",
+    },
+  ],
+
+  /* ─── Reasons I Love You ────────────── */
+  reasonsILoveYou: [
+    "Because you make me laugh even when I don't feel like smiling.",
+    "Because you see the real me and still stay.",
+    "Because your hugs feel like home.",
+    "Because you always know when something is wrong, even when I say I'm fine.",
+    "Because you make the most boring errands feel like little adventures.",
+    "Because you're patient with me, even when I'm not easy to love.",
+    "Because you remember the tiny things I say and surprise me with them later.",
+    "Because your smile genuinely makes my day better.",
+    "Because you never make me feel like I'm too much.",
+    "Because being with you feels effortless.",
+    "Because you make me believe in us — every single day.",
+    "Because you're the person I want to tell everything to — the good, the bad, and the random.",
+  ],
+
   /* ─── "Open When" Notes ─────────────── */
   openWhenNotes: [
     {
@@ -199,6 +287,18 @@ const loveStory: LoveStoryConfig = {
       label: "Open when you need a smile",
       note: "Here's a little reminder: you are someone's favourite person. Mine, specifically. And right now, wherever I am, there's a very good chance I'm thinking about you and smiling like an idiot.",
     },
+    {
+      label: "Open when you doubt yourself",
+      note: "Hey. You are more capable than you give yourself credit for. I've watched you handle things that would overwhelm anyone else, and you did it with grace. Trust yourself — I do.",
+    },
+    {
+      label: "Open when you can't sleep",
+      note: "If you're reading this in the dark at 2am — breathe. You're okay. Think of something that made you laugh today, close your eyes, and know that tomorrow I'll be right there. Goodnight, love.",
+    },
+    {
+      label: "Open when you just need to hear it",
+      note: "I love you. Not because I have to, but because choosing to love you is the easiest and best thing I do. You are enough, exactly as you are. Don't let anyone — including yourself — tell you otherwise.",
+    },
   ],
 
   /* ─── Love Letter ───────────────────── */
@@ -209,13 +309,15 @@ const loveStory: LoveStoryConfig = {
     "I love the little things — the way you get excited about small surprises, how you always know when something's on my mind, the way you make the people around you feel seen and cared for.",
     "You make me want to be better, not because you ask me to, but because being around you reminds me of what matters. Kindness. Patience. Showing up.",
     "I don't need grand gestures or perfect moments. I just like being with you — talking, laughing, sitting quietly, all of it.",
+    "There are days when I look at you and can't believe I got this lucky. That out of everyone in the world, you chose to be here, with me. I don't take that for granted.",
     "So this is my little way of saying: I notice you. I appreciate you. And I'm really, really glad you're in my life.",
+    "Always.",
   ],
   letterSignature: "With all my love",
 
   /* ─── Final Message ─────────────────── */
-  finalQuote: "If I had to choose again, I'd still choose you.",
-  finalHugReveal: "One hug now. The real one when I see you.",
+  finalQuote: "If I had to choose again, I'd still choose you. Every time.",
+  finalHugReveal: "One hug now. The real one when I see you. 🤍",
   madeWithLoveBy: "me",
 
   /* ─── Song / Audio ──────────────────── */

@@ -5,6 +5,8 @@ import MusicPlayer from "./components/MusicPlayer";
 import Hero from "./components/Hero";
 import AppreciationCards from "./components/AppreciationCards";
 import MemoryGallery from "./components/MemoryGallery";
+import OurJourney from "./components/OurJourney";
+import ReasonsCounter from "./components/ReasonsCounter";
 import HeartGame from "./components/HeartGame";
 import OpenWhenLetters from "./components/OpenWhenLetters";
 import LoveLetter from "./components/LoveLetter";
@@ -52,6 +54,14 @@ export default function App() {
           <div className="section-divider" aria-hidden="true">♥</div>
 
           <MemoryGallery />
+
+          <div className="section-divider" aria-hidden="true">♥</div>
+
+          <OurJourney />
+
+          <div className="section-divider" aria-hidden="true">♥</div>
+
+          <ReasonsCounter />
 
           <div className="section-divider" aria-hidden="true">♥</div>
 

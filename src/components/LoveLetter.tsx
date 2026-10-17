@@ -43,9 +43,9 @@ export default function LoveLetter() {
           if (timerRef.current) clearInterval(timerRef.current);
           return totalChars;
         }
-        return prev + 2;
+        return prev + 1;
       });
-    }, 25);
+    }, 40);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -77,10 +77,10 @@ export default function LoveLetter() {
   const fadeUp = reducedMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 20 },
+        initial: { opacity: 0, y: 30 },
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-40px" },
-        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+        viewport: { once: true, margin: "-60px" },
+        transition: { duration: 1, ease: [0.22, 1, 0.36, 1] as const },
       };
 
   return (

@@ -9,10 +9,10 @@ export default function Hero() {
   const fadeUp = reducedMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 24 },
+        initial: { opacity: 0, y: 30 },
         whileInView: { opacity: 1, y: 0 },
         viewport: { once: true, margin: "-50px" },
-        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+        transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] as const },
       };
 
   const scrollToNext = () => {
@@ -30,7 +30,7 @@ export default function Hero() {
         <motion.h1
           className="hero__name"
           {...fadeUp}
-          transition={{ ...fadeUp.transition, delay: 0.15 }}
+          transition={{ ...fadeUp.transition, delay: 0.4 }}
         >
           Hi, {loveStory.herNickname} 💕
         </motion.h1>
@@ -40,7 +40,7 @@ export default function Hero() {
           className="hero__decoration"
           aria-hidden="true"
           {...fadeUp}
-          transition={{ ...fadeUp.transition, delay: 0.25 }}
+          transition={{ ...fadeUp.transition, delay: 0.7 }}
         >
           <span>🌸</span>
           <span>·</span>
@@ -52,7 +52,7 @@ export default function Hero() {
         <motion.p
           className="hero__message"
           {...fadeUp}
-          transition={{ ...fadeUp.transition, delay: 0.3 }}
+          transition={{ ...fadeUp.transition, delay: 1.0 }}
         >
           {loveStory.heroMessage}
         </motion.p>
@@ -60,7 +60,7 @@ export default function Hero() {
         <motion.div
           className="hero__cta"
           {...fadeUp}
-          transition={{ ...fadeUp.transition, delay: 0.45 }}
+          transition={{ ...fadeUp.transition, delay: 1.5 }}
         >
           <button className="btn-primary" onClick={scrollToNext}>
             See what I made for you 💌
