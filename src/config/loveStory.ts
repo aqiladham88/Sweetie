@@ -331,8 +331,8 @@ const loveStory: LoveStoryConfig = {
    */
   song: {
     audioPath: "/Sweetie/audio/our-song.mp3",
-    title: "Our Song",
-    artist: "Artist",
+    title: "Hari Ini",
+    artist: "Hael Husaini & Dayang Nurfaizah",
     externalLink: "",
   },
 };
