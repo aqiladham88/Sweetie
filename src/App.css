@@ -1,0 +1,17 @@
+/* ─────────────────────────────────────────────
+   App-level layout styles
+   ───────────────────────────────────────────── */
+
+/* Smooth section transitions */
+main > section {
+  position: relative;
+}
+
+/* Alternate subtle background tints */
+main > section:nth-child(4n+3) {
+  background: linear-gradient(180deg, transparent 0%, var(--blush-light) 30%, var(--blush-light) 70%, transparent 100%);
+}
+
+main > section:nth-child(4n+1) {
+  background: linear-gradient(180deg, transparent 0%, rgba(212, 167, 106, 0.06) 30%, rgba(212, 167, 106, 0.06) 70%, transparent 100%);
+}

@@ -1,0 +1,242 @@
+/* ─────────────────────────────────────────────
+   📸  Memory Gallery (Polaroid Scrapbook)
+   ───────────────────────────────────────────── */
+
+.gallery {
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.gallery__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  color: var(--burgundy);
+  margin-bottom: 0.5rem;
+}
+
+.gallery__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+/* ── Polaroid Frame ────────────────────── */
+.polaroid {
+  background: var(--white);
+  padding: 0.75rem 0.75rem 2.5rem;
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 4px 16px var(--shadow-soft),
+    0 1px 3px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-spring), box-shadow 0.3s var(--ease-out);
+  position: relative;
+}
+
+.polaroid:nth-child(odd)  { transform: rotate(-2deg); }
+.polaroid:nth-child(even) { transform: rotate(1.5deg); }
+.polaroid:nth-child(3n)   { transform: rotate(-1deg); }
+
+.polaroid:hover,
+.polaroid:focus-visible {
+  transform: rotate(0deg) scale(1.04) translateY(-4px);
+  box-shadow: 0 12px 36px var(--shadow-med);
+}
+
+.polaroid__image-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--blush-light);
+  position: relative;
+}
+
+.polaroid__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+
+/* Placeholder for missing images */
+.polaroid__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--blush-light), var(--cream-warm));
+  color: var(--rose);
+  gap: 0.5rem;
+}
+.polaroid__placeholder-icon {
+  font-size: 2.5rem;
+  opacity: 0.6;
+}
+.polaroid__placeholder-text {
+  font-family: var(--font-handwritten);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.polaroid__caption {
+  font-family: var(--font-handwritten);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-top: 0.75rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.polaroid__date {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Small decorative tape on some cards */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 50px;
+  height: 14px;
+  background: rgba(212, 167, 106, 0.35);
+  border-radius: 2px;
+}
+.polaroid:nth-child(even)::before {
+  transform: translateX(-50%) rotate(3deg);
+  background: rgba(242, 213, 206, 0.5);
+}
+
+/* ── Modal ─────────────────────────────── */
+.gallery-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9500;
+  background: rgba(30, 15, 18, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.gallery-modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  position: relative;
+  padding: var(--space-md);
+}
+
+.gallery-modal__close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border: 1px solid var(--blush);
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s;
+}
+.gallery-modal__close:hover {
+  background: var(--blush-light);
+}
+
+.gallery-modal__image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+}
+
+.gallery-modal__caption {
+  font-family: var(--font-handwritten);
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.gallery-modal__date {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.gallery-modal__nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.gallery-modal__nav-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-xl);
+  background: var(--cream);
+  border: 1px solid var(--blush);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  transition: all 0.2s;
+}
+.gallery-modal__nav-btn:hover {
+  background: var(--blush-light);
+  color: var(--burgundy);
+}
+
+/* ── Missing image placeholder in modal ── */
+.gallery-modal__placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--blush-light), var(--cream-warm));
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-sm);
+  font-size: 3rem;
+  color: var(--rose);
+  opacity: 0.5;
+}
+
+@media (max-width: 480px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+  .polaroid {
+    padding: 0.5rem 0.5rem 2rem;
+  }
+  .polaroid::before { display: none; }
+}

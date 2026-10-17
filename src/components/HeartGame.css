@@ -1,0 +1,124 @@
+/* ─────────────────────────────────────────────
+   💗  Heart Game
+   ───────────────────────────────────────────── */
+
+.heart-game {
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.heart-game__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  color: var(--burgundy);
+  margin-bottom: 0.5rem;
+}
+
+.heart-game__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  font-style: italic;
+}
+
+.heart-game__progress {
+  font-family: var(--font-handwritten);
+  font-size: 1.15rem;
+  color: var(--rose-dusty);
+  margin-bottom: var(--space-sm);
+}
+
+/* ── Play Area ─────────────────────────── */
+.heart-game__area {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 320px;
+  margin: 0 auto var(--space-md);
+  background: linear-gradient(160deg, var(--blush-light), var(--cream-warm));
+  border-radius: var(--radius-lg);
+  border: 2px dashed var(--blush);
+  overflow: hidden;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+/* ── Floating Heart ────────────────────── */
+.heart-game__heart {
+  position: absolute;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.15s var(--ease-spring);
+  z-index: 1;
+  user-select: none;
+  border: none;
+  background: none;
+  padding: 0.5rem;
+  line-height: 1;
+}
+.heart-game__heart:hover {
+  transform: scale(1.25);
+}
+.heart-game__heart:focus-visible {
+  outline: 3px solid var(--rose);
+  border-radius: var(--radius-full);
+}
+
+/* Collected animation */
+.heart-game__heart--collected {
+  animation: heartCollect 0.5s var(--ease-out) forwards;
+  pointer-events: none;
+}
+
+@keyframes heartCollect {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.6); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+/* Floating animation */
+.heart-game__heart--floating {
+  animation: heartFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes heartFloat {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  100% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* ── Reduced motion: no float ──────────── */
+@media (prefers-reduced-motion: reduce) {
+  .heart-game__heart--floating {
+    animation: none;
+  }
+  .heart-game__heart--collected {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* ── Completion ────────────────────────── */
+.heart-game__complete {
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.heart-game__reveal {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  color: var(--burgundy);
+  margin-bottom: var(--space-sm);
+  font-style: italic;
+}
+
+.heart-game__replay {
+  margin-top: var(--space-sm);
+}
+
+/* ── Keyboard alternative ──────────────── */
+.heart-game__keyboard-alt {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}

@@ -1,0 +1,107 @@
+/* ─────────────────────────────────────────────
+   🤍  Final Surprise
+   ───────────────────────────────────────────── */
+
+.final {
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.final__quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 600;
+  color: var(--burgundy);
+  font-style: italic;
+  max-width: 500px;
+  margin: 0 auto var(--space-lg);
+  line-height: 1.4;
+}
+
+.final__hug-btn {
+  margin-bottom: var(--space-md);
+}
+
+/* ── Heart Celebration ─────────────────── */
+.final__celebration {
+  position: relative;
+  min-height: 80px;
+  margin-bottom: var(--space-md);
+}
+
+.final__hug-reveal {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--text-soft);
+  font-style: italic;
+  margin-bottom: var(--space-sm);
+}
+
+.final__replay {
+  margin-top: var(--space-xs);
+}
+
+/* Celebration hearts */
+.final__hearts-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.final__burst-heart {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 1.5rem;
+  opacity: 0;
+  animation: burstOut 1.8s var(--ease-out) forwards;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes burstOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(var(--dx), var(--dy)) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx2), var(--dy2)) scale(0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .final__burst-heart {
+    animation: none;
+    opacity: 0.6;
+    transform: translate(var(--dx), var(--dy)) scale(1);
+  }
+}
+
+/* ── Footer ────────────────────────────── */
+.final__footer {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--blush);
+}
+
+.final__made-with {
+  font-family: var(--font-handwritten);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.final__footer-heart {
+  display: block;
+  font-size: 1.5rem;
+  margin-top: var(--space-sm);
+  color: var(--rose);
+  opacity: 0.4;
+}
