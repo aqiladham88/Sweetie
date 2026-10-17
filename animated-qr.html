@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Qissy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 30% 20%, #fdf2f0 0%, #f5e1dc 40%, #eddad4 100%);
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .card {
+    position: relative;
+    width: 380px;
+    padding: 48px 40px 40px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 28px;
+    border: 1px solid rgba(183, 110, 121, 0.15);
+    box-shadow:
+      0 20px 60px rgba(122, 46, 58, 0.12),
+      0 4px 16px rgba(0,0,0,0.06);
+    text-align: center;
+    z-index: 10;
+    animation: card-float 4s ease-in-out infinite;
+  }
+
+  @keyframes card-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(0.5deg); }
+  }
+
+  .title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #7A2E3A;
+    margin-bottom: 4px;
+    animation: title-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes title-glow {
+    0%, 100% { text-shadow: 0 0 8px rgba(183, 110, 121, 0.2); }
+    50% { text-shadow: 0 0 20px rgba(183, 110, 121, 0.4); }
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #b76e79;
+    margin-bottom: 28px;
+    font-style: italic;
+    opacity: 0.8;
+    letter-spacing: 0.05em;
+  }
+
+  .qr-frame {
+    position: relative;
+    display: inline-block;
+    padding: 12px;
+    background: linear-gradient(135deg, #f5e1dc, #fff, #f5e1dc);
+    border-radius: 16px;
+    box-shadow:
+      0 8px 32px rgba(183, 110, 121, 0.15),
+      inset 0 0 0 1px rgba(183, 110, 121, 0.1);
+    margin-bottom: 24px;
+    animation: qr-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes qr-pulse {
+    0%, 100% { box-shadow: 0 8px 32px rgba(183, 110, 121, 0.15), inset 0 0 0 1px rgba(183, 110, 121, 0.1); }
+    50% { box-shadow: 0 8px 40px rgba(183, 110, 121, 0.25), inset 0 0 0 1px rgba(183, 110, 121, 0.2); }
+  }
+
+  .qr-frame img {
+    display: block;
+    width: 220px;
+    height: 220px;
+    border-radius: 8px;
+  }
+
+  /* Heart in center of QR */
+  .qr-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 2px 12px rgba(122, 46, 58, 0.2);
+    animation: heart-beat 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heart-beat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    15% { transform: translate(-50%, -50%) scale(1.15); }
+    30% { transform: translate(-50%, -50%) scale(1); }
+    45% { transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .scan-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: #7A2E3A;
+    margin-bottom: 4px;
+  }
+
+  .name-text {
+    font-size: 0.9rem;
+    color: #b76e79;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Floating Hearts ─────────────── */
+  .floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .fh {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: float-up linear infinite;
+  }
+
+  @keyframes float-up {
+    0% {
+      opacity: 0;
+      transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.5);
+    }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.5; }
+    100% {
+      opacity: 0;
+      transform: translateY(-10vh) translateX(var(--drift)) rotate(360deg) scale(1.2);
+    }
+  }
+
+  /* ── Sparkles ────────────────────── */
+  .sparkle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #d4a574, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    animation: sparkle-twinkle 2s ease-in-out infinite;
+  }
+
+  @keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── Rose petals ─────────────────── */
+  .petal {
+    position: fixed;
+    font-size: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    animation: petal-fall linear infinite;
+  }
+
+  @keyframes petal-fall {
+    0% {
+      opacity: 0;
+      transform: translateY(-5vh) translateX(0) rotate(0deg);
+    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% {
+      opacity: 0;
+      transform: translateY(105vh) translateX(var(--drift)) rotate(720deg);
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1 class="title">For You</h1>
+  <p class="subtitle">I made something special</p>
+
+  <div class="qr-frame">
+    <img src="data:image/png;base64,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" alt="QR Code" />
+    <div class="qr-heart">💕</div>
+  </div>
+
+  <p class="scan-text">Scan me, Qissy</p>
+  <p class="name-text">— with love, Adham —</p>
+</div>
+
+<div class="floating-hearts" id="hearts"></div>
+
+<script>
+  const heartEmojis = ['💕', '💗', '💖', '🤍', '🌸', '✨', '💝'];
+  const petalEmojis = ['🌸', '🪻', '🩷'];
+  const heartsContainer = document.getElementById('hearts');
+
+  // Floating hearts
+  for (let i = 0; i < 20; i++) {
+    const el = document.createElement('span');
+    el.className = 'fh';
+    el.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.fontSize = (0.8 + Math.random() * 1.2) + 'rem';
+    el.style.animationDuration = (6 + Math.random() * 8) + 's';
+    el.style.animationDelay = (Math.random() * 10) + 's';
+    el.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+    heartsContainer.appendChild(el);
+  }
+
+  // Falling petals
+  for (let i = 0; i < 10; i++) {
+    const el = document.createElement('span');
+    el.className = 'petal';
+    el.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (8 + Math.random() * 6) + 's';
+    el.style.animationDelay = (Math.random() * 12) + 's';
+    el.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+    document.body.appendChild(el);
+  }
+
+  // Sparkles
+  for (let i = 0; i < 15; i++) {
+    const el = document.createElement('div');
+    el.className = 'sparkle';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.top = Math.random() * 100 + '%';
+    el.style.width = el.style.height = (3 + Math.random() * 4) + 'px';
+    el.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+    el.style.animationDelay = (Math.random() * 3) + 's';
+    el.style.background = `radial-gradient(circle, ${['#d4a574','#b76e79','#e8c4b8','#f0d5c8'][Math.floor(Math.random()*4)]}, transparent)`;
+    document.body.appendChild(el);
+  }
+</script>
+</body>
+</html>
