@@ -1,10 +1,11 @@
 /* ─────────────────────────────────────────────
-   ✨  Appreciation Cards
+   ✨  Appreciation Cards — 3D Float
    ───────────────────────────────────────────── */
 
 .appreciation {
   padding: var(--space-xl) var(--space-md);
   text-align: center;
+  perspective: 1200px;
 }
 
 .appreciation__title {
@@ -25,9 +26,10 @@
 .appreciation__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-md);
+  gap: 2rem;
   max-width: 800px;
   margin: 0 auto;
+  perspective: 1000px;
 }
 
 /* ── Card ──────────────────────────────── */
@@ -35,6 +37,54 @@
   perspective: 600px;
   cursor: pointer;
   min-height: 180px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Floating animation */
+.appreciation-card--animated {
+  animation:
+    card-float var(--float-duration, 4s) ease-in-out infinite,
+    card-wiggle calc(var(--float-duration, 4s) * 1.3) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes card-float {
+  0%, 100% { transform: translateY(0px) translateZ(0px); }
+  50% { transform: translateY(-10px) translateZ(12px); }
+}
+
+@keyframes card-wiggle {
+  0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+  25% { transform: translateY(-7px) rotateY(3deg) rotateX(-1.5deg); }
+  50% { transform: translateY(-10px) rotateY(0deg) rotateX(1.5deg); }
+  75% { transform: translateY(-5px) rotateY(-3deg) rotateX(-1deg); }
+}
+
+/* Hover: pause float, lift */
+.appreciation-card:hover,
+.appreciation-card:focus-visible {
+  animation-play-state: paused;
+}
+
+/* Shadow under card */
+.appreciation-card--animated::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  right: 10%;
+  height: 16px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: card-shadow var(--float-duration, 4s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes card-shadow {
+  0%, 100% { opacity: 0.7; transform: scaleX(1); }
+  50% { opacity: 0.35; transform: scaleX(0.85); }
 }
 
 .appreciation-card__inner {
@@ -66,7 +116,7 @@
 .appreciation-card__front {
   background: linear-gradient(145deg, var(--white), var(--blush-light));
   border: 1px solid var(--blush);
-  box-shadow: 0 4px 16px var(--shadow-soft);
+  box-shadow: 0 6px 24px var(--shadow-soft);
 }
 
 .appreciation-card__icon {
@@ -85,7 +135,7 @@
   transform: rotateY(180deg);
   background: linear-gradient(145deg, var(--cream-warm), var(--white));
   border: 1px solid var(--blush);
-  box-shadow: 0 4px 16px var(--shadow-soft);
+  box-shadow: 0 6px 24px var(--shadow-soft);
   text-align: center;
 }
 
@@ -104,8 +154,14 @@
   opacity: 0.5;
 }
 
-/* ── Reduced motion: slide instead of flip ── */
+/* ── Reduced motion ───────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  .appreciation-card--animated {
+    animation: none !important;
+  }
+  .appreciation-card--animated::after {
+    animation: none !important;
+  }
   .appreciation-card__inner {
     transition: none;
     transform-style: flat;

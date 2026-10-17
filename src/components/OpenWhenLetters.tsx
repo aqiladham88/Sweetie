@@ -39,7 +39,11 @@ export default function OpenWhenLetters() {
           return (
             <motion.li
               key={i}
-              className={`open-when-card${isOpen ? " open-when-card--open" : ""}`}
+              className={`open-when-card${isOpen ? " open-when-card--open" : ""}${reducedMotion ? "" : " open-when-card--animated"}`}
+              style={{
+                "--float-delay": `${(i * 0.6) % 3}s`,
+                "--float-duration": `${4 + ((i * 5 + 2) % 4) * 0.5}s`,
+              } as React.CSSProperties}
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: i * 0.15 }}
             >

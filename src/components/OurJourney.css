@@ -1,6 +1,7 @@
 .journey {
   padding: 5rem 1.5rem;
   text-align: center;
+  perspective: 1200px;
 }
 
 .journey__title {
@@ -85,8 +86,56 @@
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
   border: 1px solid rgba(183, 110, 121, 0.15);
-  box-shadow: 0 4px 20px rgba(183, 110, 121, 0.1);
+  box-shadow: 0 6px 24px rgba(183, 110, 121, 0.1);
   max-width: 280px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+}
+
+/* Floating animation for journey cards */
+.journey__card--animated {
+  animation:
+    journey-float var(--float-duration, 4.2s) ease-in-out infinite,
+    journey-wiggle calc(var(--float-duration, 4.2s) * 1.25) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes journey-float {
+  0%, 100% { transform: translateY(0px) translateZ(0px); }
+  50% { transform: translateY(-9px) translateZ(10px); }
+}
+
+@keyframes journey-wiggle {
+  0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+  25% { transform: translateY(-5px) rotateY(3deg) rotateX(-1deg); }
+  50% { transform: translateY(-9px) rotateY(0deg) rotateX(2deg); }
+  75% { transform: translateY(-4px) rotateY(-3deg) rotateX(-1deg); }
+}
+
+.journey__card:hover {
+  animation-play-state: paused;
+  box-shadow: 0 14px 36px rgba(183, 110, 121, 0.18);
+}
+
+/* Float shadow */
+.journey__card--animated::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 10%;
+  right: 10%;
+  height: 14px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: journey-shadow var(--float-duration, 4.2s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes journey-shadow {
+  0%, 100% { opacity: 0.6; transform: scaleX(1); }
+  50% { opacity: 0.25; transform: scaleX(0.8); }
 }
 
 .journey__date {
@@ -134,5 +183,15 @@
 
   .journey__card {
     max-width: 100%;
+  }
+}
+
+/* ── Reduced motion ────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .journey__card--animated {
+    animation: none !important;
+  }
+  .journey__card--animated::after {
+    animation: none !important;
   }
 }

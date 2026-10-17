@@ -41,7 +41,11 @@ export default function AppreciationCards() {
           return (
             <motion.div
               key={i}
-              className={`appreciation-card${isRevealed ? " appreciation-card--revealed" : ""}`}
+              className={`appreciation-card${isRevealed ? " appreciation-card--revealed" : ""}${reducedMotion ? "" : " appreciation-card--animated"}`}
+              style={{
+                "--float-delay": `${(i * 0.5) % 3}s`,
+                "--float-duration": `${3.5 + ((i * 7 + 3) % 5) * 0.5}s`,
+              } as React.CSSProperties}
               role="listitem"
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: i * 0.12 }}

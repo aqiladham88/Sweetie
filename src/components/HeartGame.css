@@ -42,6 +42,45 @@
   overflow: hidden;
   touch-action: manipulation;
   user-select: none;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Float for game area */
+.heart-game__area--animated {
+  animation:
+    game-float 5s ease-in-out infinite,
+    game-wiggle 6s ease-in-out infinite;
+}
+
+@keyframes game-float {
+  0%, 100% { transform: translateY(0px) translateZ(0px); }
+  50% { transform: translateY(-8px) translateZ(8px); }
+}
+
+@keyframes game-wiggle {
+  0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+  25% { transform: translateY(-5px) rotateY(1.5deg) rotateX(-0.8deg); }
+  50% { transform: translateY(-8px) rotateY(0deg) rotateX(1deg); }
+  75% { transform: translateY(-3px) rotateY(-1.5deg) rotateX(-0.5deg); }
+}
+
+.heart-game__area--animated::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 8%;
+  right: 8%;
+  height: 16px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: game-shadow 5s ease-in-out infinite;
+}
+
+@keyframes game-shadow {
+  0%, 100% { opacity: 0.6; transform: scaleX(1); }
+  50% { opacity: 0.25; transform: scaleX(0.85); }
 }
 
 /* ── Floating Heart ────────────────────── */
@@ -95,6 +134,12 @@
   .heart-game__heart--collected {
     animation: none;
     opacity: 0;
+  }
+  .heart-game__area--animated {
+    animation: none !important;
+  }
+  .heart-game__area--animated::after {
+    animation: none !important;
   }
 }
 

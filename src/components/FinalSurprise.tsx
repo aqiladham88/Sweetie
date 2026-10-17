@@ -69,7 +69,7 @@ export default function FinalSurprise() {
 
   return (
     <section className="final" id="final" aria-label="Final surprise">
-      <motion.p className="final__quote" {...fadeUp}>
+      <motion.p className={`final__quote${reducedMotion ? "" : " final__quote--animated"}`} {...fadeUp}>
         "{loveStory.finalQuote}"
       </motion.p>
 

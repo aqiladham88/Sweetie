@@ -95,7 +95,7 @@ export default function LoveLetter() {
       </motion.h2>
 
       <motion.div
-        className="love-letter__paper"
+        className={`love-letter__paper${reducedMotion ? "" : " love-letter__paper--animated"}`}
         {...fadeUp}
         transition={{ ...fadeUp.transition, delay: 0.15 }}
       >

@@ -87,7 +87,7 @@ export default function HeartGame() {
           </p>
 
           <div
-            className="heart-game__area"
+            className={`heart-game__area${reducedMotion ? "" : " heart-game__area--animated"}`}
             ref={areaRef}
             role="application"
             aria-label={`Heart catching game. ${collected} of ${TOTAL_HEARTS} hearts collected.`}

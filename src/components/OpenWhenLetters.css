@@ -1,10 +1,11 @@
 /* ─────────────────────────────────────────────
-   💌  Open When Letters
+   💌  Open When Letters — 3D Float
    ───────────────────────────────────────────── */
 
 .open-when {
   padding: var(--space-xl) var(--space-md);
   text-align: center;
+  perspective: 1200px;
 }
 
 .open-when__title {
@@ -25,10 +26,11 @@
 .open-when__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 2rem;
   max-width: 520px;
   margin: 0 auto;
   list-style: none;
+  perspective: 800px;
 }
 
 /* ── Envelope Card ─────────────────────── */
@@ -36,11 +38,56 @@
   background: linear-gradient(145deg, #f5e6d8, #edd5c4);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 4px 18px var(--shadow-soft);
-  transition: box-shadow 0.3s var(--ease-out);
+  box-shadow: 0 6px 24px var(--shadow-soft);
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
 }
+
+/* Floating animation */
+.open-when-card--animated {
+  animation:
+    envelope-float var(--float-duration, 4.5s) ease-in-out infinite,
+    envelope-wiggle calc(var(--float-duration, 4.5s) * 1.2) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes envelope-float {
+  0%, 100% { transform: translateY(0px) translateZ(0px); }
+  50% { transform: translateY(-10px) translateZ(10px); }
+}
+
+@keyframes envelope-wiggle {
+  0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg) rotate(0deg); }
+  25% { transform: translateY(-6px) rotateY(2.5deg) rotateX(-1deg) rotate(0.5deg); }
+  50% { transform: translateY(-10px) rotateY(0deg) rotateX(1.5deg) rotate(-0.3deg); }
+  75% { transform: translateY(-4px) rotateY(-2.5deg) rotateX(-0.5deg) rotate(0.5deg); }
+}
+
+/* Hover: pause and lift */
 .open-when-card:hover {
-  box-shadow: 0 8px 28px var(--shadow-med);
+  animation-play-state: paused;
+  box-shadow: 0 16px 40px var(--shadow-med);
+}
+
+/* Drop shadow underneath */
+.open-when-card--animated::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 12%;
+  right: 12%;
+  height: 14px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: envelope-shadow var(--float-duration, 4.5s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes envelope-shadow {
+  0%, 100% { opacity: 0.7; transform: scaleX(1); }
+  50% { opacity: 0.3; transform: scaleX(0.8); }
 }
 
 .open-when-card__trigger {
@@ -91,7 +138,6 @@
   line-height: 1.75;
   text-align: left;
   box-shadow: inset 0 1px 3px var(--shadow-soft);
-  /* Faint ruled lines */
   background-image: repeating-linear-gradient(
     transparent,
     transparent 27px,
@@ -112,6 +158,12 @@
 
 /* ── Reduced motion ────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+  .open-when-card--animated {
+    animation: none !important;
+  }
+  .open-when-card--animated::after {
+    animation: none !important;
+  }
   .open-when-card__note {
     transition: none;
   }

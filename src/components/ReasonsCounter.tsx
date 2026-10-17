@@ -85,7 +85,7 @@ export default function ReasonsCounter() {
           {revealed > 0 && (
             <motion.div
               key={currentIndex}
-              className="reasons__card"
+              className={`reasons__card${reducedMotion ? "" : " reasons__card--animated"}`}
               initial={reducedMotion ? {} : { opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reducedMotion ? {} : { opacity: 0, y: -20, scale: 0.95 }}

@@ -48,7 +48,13 @@ export default function OurJourney() {
               <div className="journey__dot" aria-hidden="true">
                 <span>{m.icon}</span>
               </div>
-              <div className="journey__card">
+              <div
+                className={`journey__card${reducedMotion ? "" : " journey__card--animated"}`}
+                style={{
+                  "--float-delay": `${(i * 0.7) % 3}s`,
+                  "--float-duration": `${3.8 + ((i * 3 + 1) % 4) * 0.5}s`,
+                } as React.CSSProperties}
+              >
                 {m.date && <span className="journey__date">{m.date}</span>}
                 <h3 className="journey__card-title">{m.title}</h3>
                 <p className="journey__card-text">{m.description}</p>
