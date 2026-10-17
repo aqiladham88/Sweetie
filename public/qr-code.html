@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code — For You 💕</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #FDF6EE 0%, #F9EDDE 40%, #FAE8E4 100%);
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #7A2E3A;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: #D4848A;
+      margin-bottom: 2rem;
+    }
+
+    .qr-container {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow:
+        0 8px 30px rgba(122, 46, 58, 0.12),
+        0 2px 8px rgba(0,0,0,0.04);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .qr-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .url {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: #8B7070;
+      word-break: break-all;
+      text-align: center;
+    }
+
+    .instructions {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #8B7070;
+      text-align: center;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    .instructions code {
+      background: rgba(212, 132, 138, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your QR Code 💕</h1>
+  <p class="subtitle">Print it, text it, or tuck it in a card</p>
+
+  <div class="qr-container">
+    <img src="qr-code.svg" alt="QR code linking to your love story website" />
+  </div>
+
+  <p class="url">https://aqiladham88.github.io/Sweetie/</p>
+
+  <div class="instructions">
+    <p>This QR code links to your website.</p>
+    <p>To update the URL, run:</p>
+    <p><code>npx tsx scripts/generate-qr.ts https://your-url.com</code></p>
+  </div>
+</body>
+</html>
