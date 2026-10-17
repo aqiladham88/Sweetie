@@ -102,9 +102,9 @@ export interface LoveStoryConfig {
 
 const loveStory: LoveStoryConfig = {
   /* ─── Names ─────────────────────────── */
-  herName: "My Love",
-  herNickname: "My Love",
-  yourName: "Me",
+  herName: "Qissy",
+  herNickname: "Qissy",
+  yourName: "Adham",
 
   /* ─── Hero Section ──────────────────── */
   heroMessage:
@@ -302,7 +302,7 @@ const loveStory: LoveStoryConfig = {
   ],
 
   /* ─── Love Letter ───────────────────── */
-  letterGreeting: "Dear you,",
+  letterGreeting: "Dear Qissy,",
   letterParagraphs: [
     "I've been wanting to put this into words for a while, so here goes.",
     "Thank you for being you. For laughing at my terrible jokes, for listening when I ramble about nothing important, for making even the most ordinary Tuesday feel like something worth remembering.",
@@ -313,12 +313,12 @@ const loveStory: LoveStoryConfig = {
     "So this is my little way of saying: I notice you. I appreciate you. And I'm really, really glad you're in my life.",
     "Always.",
   ],
-  letterSignature: "With all my love",
+  letterSignature: "With all my love, Adham",
 
   /* ─── Final Message ─────────────────── */
   finalQuote: "If I had to choose again, I'd still choose you. Every time.",
   finalHugReveal: "One hug now. The real one when I see you. 🤍",
-  madeWithLoveBy: "me",
+  madeWithLoveBy: "Adham",
 
   /* ─── Song / Audio ──────────────────── */
   /**
